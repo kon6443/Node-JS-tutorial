@@ -20,8 +20,6 @@ app.get('/keystroke', function(req, res) {
 });
 
 app.get('/keystroke/:country', function(req, res) {
-    console.log('req.query.country: ', req.query.country);
-    if (req.query.country=='') res.status(200).send();
     var options = {
         mode: 'json',
         pythonPath:'',  

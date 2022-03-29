@@ -42,13 +42,12 @@ def insert(country):
         )
         sql = "insert into COUNTRY(NAME) values (?)"
         #cursor.executemany(sql, data)    
-        cursor.execute(sql,(country))
+        cursor.execute(sql,(country,))
         conn.commit()
 
 def main(arg):
-    # country = arg[:]
+    country = arg[:]
     country = input()
-    print('coutry: ', country)
     insert(country)
     show()
 

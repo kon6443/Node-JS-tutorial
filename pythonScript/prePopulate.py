@@ -4,9 +4,9 @@ import json
 
 def main(arg):
     #sql processing
-    conn = sqlite3.connect("database.db")
+    conn = sqlite3.connect("test.db")
     cursor = conn.cursor()
-    cursor.execute("SELECT Country FROM Uni_Programs_Requ")
+    cursor.execute("SELECT name FROM COUNTRY")
     data = cursor.fetchall()
 
     results = {}
@@ -22,21 +22,20 @@ def main(arg):
     return_value = json.dumps(results)
     print(return_value)
 
-def insert(name, category, state):
-    #   SQLite DB connection
-    conn = sqlite3.connect("keystroke.db")
+def show():
+    conn = sqlite3.connect("test.db")
     with conn:
+        result = []
         #   generating a cursor from connection
         cursor = conn.cursor()
-        data = (
-            ('One', 1, 'Seoul'),
-            ('Two', 2, 'Suwon'),
-            ('Three', 3, 'Daegu')
-        )
-        sql = "insert into customer(name,category,region) values (?,?,?)"
-        #cursor.executemany(sql, data)    
-        cursor.execute(sql,(name,category,state))
-        conn.commit()        
+        cursor.execute('select * from COUNTRY')
+        # Data fetch and printing out
+        rows = cursor.fetchall()
+        for row in rows:
+            result.append(row)
+            #print(row)
+        return_value = json.dumps(result)
+        print(return_value)
 
 
 if __name__ == '__main__':

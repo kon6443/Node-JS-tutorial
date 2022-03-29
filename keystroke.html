@@ -29,15 +29,17 @@
                         <input name="Country" type="text" id="Country" placeholder="Enter Country" oninput='sendAjax()' /> <br>
                         answer:  <span id="answer"></span> <br><br>
 						<div>
-							
+							<a>Try to type: </a><br>
+							<a>Korea, United States, United Kingdom, Russia, Ukraine, Japan, China</a>
 														
 						</div>
                         <script>
                             function sendAjax() {
                                 var country = document.getElementById("Country").value;
-								// console.log(length(country));
-								console.log(country);
-								if (country==='') return ;
+								if (country==='') {
+									answer.innerHTML = '';
+									return ;
+								}
                                 $.ajax({
                                     type: "get",
                                     url: 'http://localhost:8080/keystroke/:country',
